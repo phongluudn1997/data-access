@@ -1,5 +1,5 @@
 import axios, { Method, AxiosRequestConfig, AxiosInstance } from "axios";
-import { API_URL } from "../config";
+import { API_URL } from "config";
 
 class DataAccess {
   _profile: string;

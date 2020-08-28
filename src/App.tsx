@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 import "./App.css";
-import { DataProfile } from "./data-access";
+import { useFetchData } from "hooks/";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  console.log("render");
+  const { status, data, error } = useFetchData("/todos");
 
-  useEffect(() => {
-    DataProfile.Get("/todos")
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }, []);
+  if (status === "idle" || status === "pending") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "error") {
+    return <div>{error}</div>;
+  }
 
   return <div className="App"></div>;
 }
